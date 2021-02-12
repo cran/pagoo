@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Recipes</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Recipes</h1>
+
+
+
+<p>Here we introduce our cookbook which is made of recipes. Each recipe is a customized piece of code to complete different advanced tasks. By using these recipes (or creating new ones) the user can take full profit of functionalities provided by <code>pagoo</code> and easily interact with other <code>R</code> packages to perform a variety of analyses including phylogenetics, pangenome-wide association studies, sequence comparisons, ecological measures, prepare publication-quality figures, among others. If you want to standardize any analysis from your pangenome data that is not covered in this tutorial, we can help you and write a recipe. Contact us!</p>
+<p>Start by loading the <code>pagoo</code> object, as in previous tutorials:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(pagoo) <span class="co"># Load package</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">toy_rds &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'campylobacter.RDS'</span>, <span class="dt">package =</span> <span class="st">'pagoo'</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">p &lt;-<span class="st"> </span><span class="kw">load_pangenomeRDS</span>(toy_rds)</a></code></pre></div>
+<div id="publication-quality-figures" class="section level1">
+<h1>Publication-quality figures</h1>
+<p>In the section <strong>5 - Methods and Plots</strong> we introduced a set of several plots that <code>pagoo</code> can generate for the basic exploration of pangenome features. These plots are generated using <code>ggplot2</code>, so their aesthetic features can be easily improved. Here we show how <code>pagoo</code> interacts with <code>ggplot2</code> and some of its extensions to produce publication-quality figures from the previous standard pangenome plots, allowing flexible styling and reproducible generation of figures. Some customization has already been shown in previous tutorials.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(patchwork)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># 1. Pangenome curves</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">curves &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">gg_curves</span>() <span class="op">+</span><span class="st">                                     </span><span class="co"># Plot core- and pan-genome curves</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">          </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">'black'</span>, <span class="st">'black'</span>)) <span class="op">+</span><span class="st">  </span><span class="co"># Customize line colors</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">          </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.05</span>, <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">color =</span> <span class="st">'grey'</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add semi-transparent data points</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">          </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">15</span>) <span class="op">+</span><span class="st">                          </span><span class="co"># Customize background theme</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">          </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">'none'</span>,                     <span class="co"># Remove legend</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),                     <span class="co"># Customize axis title</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))                      <span class="co"># Customize axis text size</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># 2. Gene frequency bar plots</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">bars &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">gg_barplot</span>() <span class="op">+</span><span class="st">                                       </span><span class="co"># Plot gene frequency distribution</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">15</span>) <span class="op">+</span><span class="st">                                   </span><span class="co"># Customize background color</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),                  <span class="co"># Customize axis label size</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">        <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>)) <span class="op">+</span><span class="st">                   </span><span class="co"># Customize axis text size</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">'identity'</span>, <span class="dt">color =</span> <span class="st">'black'</span>, <span class="dt">fill =</span> <span class="st">'black'</span>) <span class="co"># Customize bar color and borders</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># 3. PCA of accessory genes colored by host</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">pca &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">gg_pca</span>(<span class="dt">colour =</span> <span class="st">'host'</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st">                </span><span class="co"># Plot PCA, color by host</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">15</span>) <span class="op">+</span><span class="st">                                </span><span class="co"># Customize background theme</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">'bottom'</span>) <span class="op">+</span><span class="st">                       </span><span class="co"># Customize legend position</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),               <span class="co"># Customize axis title</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))                <span class="co"># Customize axis text size</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co"># 4. Pie chart of core and accessory genes</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">pie &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">gg_pie</span>() <span class="op">+</span><span class="st">                                         </span><span class="co"># Plot pie chart</span></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="st">  </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">15</span>) <span class="op">+</span><span class="st">                                </span><span class="co"># Customize background theme</span></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="st">  </span><span class="kw">scale_fill_discrete</span>(<span class="dt">guide =</span> <span class="kw">guide_legend</span>(<span class="dt">keywidth =</span> <span class="fl">.75</span>,</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">                                           <span class="dt">keyheight =</span> <span class="fl">.75</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Customize fill</span></a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Blues&quot;</span>) <span class="op">+</span><span class="st">                    </span><span class="co"># Customize fill color</span></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>)) <span class="op">+</span><span class="st">             </span><span class="co"># Customize axis scales</span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">'bottom'</span>,                         <span class="co"># Customize legend position</span></a>
+<a class="sourceLine" id="cb2-35" data-line-number="35">        <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),                     <span class="co"># Remove legend title</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36">        <span class="dt">legend.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>),              <span class="co"># Change legend text size</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37">        <span class="dt">legend.margin =</span> <span class="kw">margin</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">13</span>, <span class="dv">0</span>),                <span class="co"># Change legend margins</span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38">        <span class="dt">legend.box.margin =</span> <span class="kw">margin</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>),             <span class="co"># Change box margins</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39">        <span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(),                     <span class="co"># Remove X-axis title</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">        <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),                     <span class="co"># Remove Y-axis title</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),                       <span class="co"># Remove axis ticks</span></a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">        <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>())                      <span class="co"># Remove X-axis text</span></a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb2-45" data-line-number="45"><span class="co"># 5. Use patchwork to arrange plots using math operators</span></a>
+<a class="sourceLine" id="cb2-46" data-line-number="46">(curves <span class="op">+</span><span class="st"> </span>bars) <span class="op">/</span><span class="st"> </span>(pca <span class="op">+</span><span class="st"> </span>pie)</a></code></pre></div>
+<p><img src="data:image/png;base64,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AQccYJBtkM9zzz1Xituebo499lhb3SWXXNLssMMOdon6xhtvGAi3S4Aefvhhc9ddd5lPPvnEEuLTTjvNprv33nvNKaecYvEHET744IPNzjvvbPHi4yESIB8j8bnDYIDOP8888wS357777rPCaZYZpNtmm23M7rvvbgXY1TJ54oknTJcuXcxRRx1lOYKjjz46c3lXLa9mv4fwIGCGuCy77LLmqquuMquttpoVRrvCeogtHNBCCy1kl2dvvfWWrTpLOAgwaT/99FOzyy672GWbu6TTNrbfhaq2IF4jBjIwsM4665jHHnss9e3IkSMNSywX0PwMGDCgjGOCU4IwpYFq0nj39ttvm3XXXdd07Tp7TocYIUdpjwD3t9hii5ltt93W/mjDo48+agnJlltuab7//e/bZvXp06fUPJZaU6dOtc/vvfeegSPcfvvtS+/hnCZOnFh61pvIASkm4rXDYWCjjTYyo0ePtmp3t3ETJkywwukbb7zRDbYyi5deeqkk8+Hl888/b2d57rt162YmT57MrQUGmQIatv/85z9ladHAtUeAcKLBcwFh/lprrWWUy+EdRDYNFl98catpZNmmv3vuucegSfMhEiAfI/G5w2CAAYONDwJUlkhoZFAxI5OA+znmmGPK2op6HuLEkoOlxquvvmruvPPOEhew1FJLGQgUMg80XciHADihQYMGGbRBf/rTn+wzA84VypYV1MYf9tlnH3PcccfZJRgyL4TRV199tSWwyISqAbKwW265pWSCMHz4cAM3+r///a9F0ja1BENoRyVh8Sqp7lq0op0EJBPGm5miKUjGf2O6zDuf6dZ/BbnO205q3z6ree6551quBNkMyySI0IYbbmjgfnzh9DLLLGMFp4ceeqg544wzLJE55JBDSjZDELK//OUvZumll7bancMPP9wsvPDClhNAbnLrrbda4oYAFvX+Flts0S6R9utf/9oKm4844gjz8ccf2zassMIKdimKzKcawOlAfDfbbDNL6OeVPg6xRuvoE+UuQr1nm4RWy7UV3u+22252xkGLwIdtbWAGQ9Xat29f8+Mf/7iw4md9+YWZ+rcbzMwRr8LHG5leS9duq61u5tjnZ6arCPLqBdjdVVddtSwb1uaE7bfffuawww4re9foh7bmD4h+hW0POKkGTIQsJVSm48bHmHHuuecu0wi57+GQkKHkgbbmD4i2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" /><!-- --></p>
+<div id="using-micropan-methods" class="section level2">
+<h2>Using <code>micropan</code> Methods</h2>
+<div id="estimation-of-core-and-pangenome-sizes" class="section level3">
+<h3>Estimation of Core and Pangenome Sizes</h3>
+<p>Given a panmatrix, you could predict the number of core clusters and the total number of clusters in a pangenome. Several methods have been developed for this purpose, in this case a binomial mixture model implemented by <code>micropan</code> package is used to describe the distribution of gene clusters across genomes in a pangenome.</p>
+<p>To use this method, simply pass the object’s pan-matrix to the <code>micropan::binomixEstimate</code> function:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(micropan)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">micropan<span class="op">::</span><span class="kw">binomixEstimate</span>(p<span class="op">$</span>pan_matrix)</a></code></pre></div>
+<p>Given that we are using a very small toy dataset, results here are not really meaningful.</p>
+</div>
+<div id="fluidity" class="section level3">
+<h3>Fluidity</h3>
+<p>Genomic fluidity is a measure of population diversity. It’s somehow similar to computing jaccard distances, but genomic fluidity describes the whole population whereas jaccard distances are computed pairwise. As above, we are passing the object’s pan-matrix to the <code>micropan::fluidity</code> function. In this case, lets use <code>magrittr</code>’s <code>%&gt;%</code> operator to pipe it, and compute fluidity using 100 random samples:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(micropan)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">p<span class="op">$</span>pan_matrix <span class="op">%&gt;%</span><span class="st"> </span>micropan<span class="op">::</span><span class="kw">fluidity</span>(<span class="dt">n.sim =</span> <span class="dv">100</span>)</a></code></pre></div>
+</div>
+</div>
+</div>
+<div id="blastp" class="section level1">
+<h1>Blastp</h1>
+<p>After you have reconstructed the pangenome, it’s a common practice to use a single representative gene from each cluster to annotate them using a curated database such as COG, EggNOG or KEGG. After doing that, you probably want to add any new information to the <code>pagoo</code> object as cluster’s metadata. In this recipe we show how to extract one representative sequence from each cluster, translate each of them, and use <a href="https://github.com/mhahsler/rBLAST">rBLAST</a> package to query a hypothetical blastp database. <strong>NOTE:</strong> we didn’t include any blast database in the package, the code here is just to illustrate the general idea. Running the following chunk will throw an error.</p>
+<p><strong>DEVELOPER NOTE: ADDING METADATA STEP MISSING</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Load required packages</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(rBlast)) devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">'mhahsler/rBLAST'</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">library</span>(Biostrings)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">library</span>(rBLAST)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">db_path &lt;-<span class="st"> 'path/to/custom/blastpdb'</span>        <span class="co"># Path to custom blastp db</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">db &lt;-<span class="st"> </span><span class="kw">blast</span>(<span class="dt">db =</span> db_path, <span class="dt">type =</span> <span class="st">'blastp'</span>)  <span class="co"># Set blastdb</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">blast_result &lt;-<span class="st"> </span>p<span class="op">$</span>sequences <span class="op">%&gt;%</span><span class="st">             </span><span class="co"># Pangenome sequences</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw">lapply</span>(<span class="st">'[['</span>, 1L) <span class="op">%&gt;%</span><span class="st">                      </span><span class="co"># Subset 1 sequence from each cluster</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span>Biostrings<span class="op">::</span><span class="kw">DNAStringSet</span>() <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># Transform list to DNAStringSet</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="st">  </span>Biostrings<span class="op">::</span><span class="kw">translate</span>() <span class="op">%&gt;%</span><span class="st">               </span><span class="co"># Translate DNAStringSet</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="st">  </span>rBLAST<span class="op">::</span><span class="kw">predict.BLAST</span>(db, .)              <span class="co"># Run blastp. Returns data.frame</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">### ADD METADATA STEP MISSING</span></a></code></pre></div>
+</div>
+<div id="neutral-genes" class="section level1">
+<h1>Neutral genes</h1>
+<p>The core genome is composed by those genes that are present in every or almost every genome in the sample. As these genes are present in all genomes, they can be used to extract important biological information like phylogenetic relationships, study recombination or selective pressures. For doing these, core genes need to be aligned. In the next few sections we explain how to do this to perform some of the above mentioned downstream analyses.</p>
+<p>To reveal the vertical evolutionary history of a bacterial population we should take into account the presence of horizontal acquisition of genetic material, like by means of recombination, that is maintained by the action of natural selection. Hence, we can use the Tajima’s D test of neutrality as implemented in <code>pegas</code> ( <a href="https://academic.oup.com/bioinformatics/article/26/3/419/215731">Paradis, 2010</a>) to identify those core genes that are not subjected to strong selective pressures and are likely evolving neutrally.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Load required packages</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">library</span>(DECIPHER)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">library</span>(pegas)</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">library</span>(ape)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">p<span class="op">$</span>core_level &lt;-<span class="st"> </span><span class="dv">100</span>                       <span class="co"># Set core_level to 100% to avoid </span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">                                          <span class="co">#  AlignTranslation() errors.</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">tajimaD &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">core_seqs_4_phylo</span>() <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Core genome sequences</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">  </span><span class="kw">lapply</span>(DECIPHER<span class="op">::</span>AlignTranslation) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Align translation</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">  </span><span class="kw">lapply</span>(ape<span class="op">::</span>as.DNAbin) <span class="op">%&gt;%</span><span class="st">              </span><span class="co"># Transform class to DNAbin</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="st">  </span><span class="kw">lapply</span>(pegas<span class="op">::</span>tajima.test) <span class="op">%&gt;%</span><span class="st">          </span><span class="co"># Compute Tajima's test</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="st">  </span><span class="kw">sapply</span>(<span class="st">'[['</span>, <span class="st">'D'</span>)                       <span class="co"># Get Tajima's 'D' statistic from each</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co"># Which are neutral?</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="kw">which</span>(tajimaD <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.2</span> <span class="op">&amp;</span><span class="st"> </span>tajimaD <span class="op">&gt;=</span><span class="st"> </span><span class="fl">-0.2</span>)  </a></code></pre></div>
+</div>
+<div id="quick-dirty-phylogeny" class="section level1">
+<h1>Quick dirty phylogeny</h1>
+<p>The best practices on how to build a phylogeny from core genomes is a topic of debate. In this first example we provide a one-liner to align individual core genes (like in the previous case), produce a concatenated core genome alignment, calculate a core genome phylogeny using the Neighbor-Joining method as implemented by <code>phangorn</code> (Schliep, 2011), and visualize it using host metadata to color tree tips using <code>ggtree</code> (Yu et al., 2017). Phylogenetic tree is assigned to the <code>phy</code> variable, and plotted as side effect by using magrittr’s <code>%T&gt;%</code> operator.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># Load required packages</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">library</span>(DECIPHER)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">library</span>(Biostrings)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">library</span>(phangorn)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">library</span>(ggtree)</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">phy &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">core_seqs_4_phylo</span>() <span class="op">%&gt;%</span><span class="st">                 </span><span class="co"># Core genome sequences</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="st">  </span><span class="kw">lapply</span>(DECIPHER<span class="op">::</span>AlignSeqs) <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># Align</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="st">  </span><span class="kw">do.call</span>(Biostrings<span class="op">::</span>xscat, .) <span class="op">%&gt;%</span><span class="st">              </span><span class="co"># Concatenate alignments</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="st">  </span><span class="kw">setNames</span>(p<span class="op">$</span>organisms<span class="op">$</span>org) <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># Set sequence names</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="st">  </span><span class="kw">as</span>(<span class="st">'matrix'</span>) <span class="op">%&gt;%</span><span class="st">                               </span><span class="co"># Transform to matrix</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">phyDat</span>(<span class="dt">type =</span> <span class="st">'DNA'</span>) <span class="op">%&gt;%</span><span class="st">             </span><span class="co"># Transform to phangorn's phyDat</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">dist.ml</span>() <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># Compute distance</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">NJ</span>() <span class="op">%T&gt;%</span><span class="st"> </span>{                          <span class="co"># Compute NJ, and assign &quot;phy&quot;</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">    {</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">      ggtree<span class="op">::</span><span class="kw">ggtree</span>(.) <span class="op">%&lt;+%</span><span class="st">                        </span><span class="co"># Create ggtree</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="st">        </span><span class="kw">as.data.frame</span>(p<span class="op">$</span>organisms) <span class="op">+</span><span class="st">                </span><span class="co"># Get organisms metadata</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="st">        </span>ggtree<span class="op">::</span><span class="kw">geom_tippoint</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> host)) <span class="op">+</span><span class="st"> </span><span class="co"># Add coloured tip points</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="st">        </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">'Set1'</span>)        <span class="co"># Set color palette</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">    } <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="st">      </span><span class="kw">print</span>()</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">}</a></code></pre></div>
+</div>
+<div id="maximum-likelihood-phylogeny" class="section level1">
+<h1>Maximum Likelihood phylogeny</h1>
+<p>The following method is similar to the previous, but in this case we are optimizing the topology and branch lengths by maximum likelihood method implemented in <code>phangorn</code> package. Although this is a fully working example, its purpose is just to illustrate the idea. You should consider tuning the parameters to better fit your dataset (e.g.: just 4 discrete gamma distributions for a whole coregenome alignment may be too low).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Load required packages</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">library</span>(DECIPHER)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">library</span>(Biostrings)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">library</span>(phangorn)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">library</span>(ggtree)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">phy &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">core_seqs_4_phylo</span>() <span class="op">%&gt;%</span><span class="st">                 </span><span class="co"># Core genome sequences</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="st">  </span><span class="kw">lapply</span>(DECIPHER<span class="op">::</span>AlignSeqs) <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># Align</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="st">  </span><span class="kw">do.call</span>(Biostrings<span class="op">::</span>xscat, .) <span class="op">%&gt;%</span><span class="st">              </span><span class="co"># Concatenate alignments</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="st">  </span><span class="kw">setNames</span>(p<span class="op">$</span>organisms<span class="op">$</span>org) <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># Set sequence names</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="st">  </span><span class="kw">as</span>(<span class="st">'matrix'</span>) <span class="op">%&gt;%</span><span class="st">                               </span><span class="co"># Transform to matrix</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">phyDat</span>(<span class="dt">type =</span> <span class="st">'DNA'</span>) <span class="op">%T&gt;%</span><span class="st">            </span><span class="co"># Transform to phangorn's phyDat</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span><span class="kw">assign</span>(<span class="st">'dat'</span>, ., .GlobalEnv) <span class="op">%&gt;%</span><span class="st">               </span><span class="co"># Assign to &quot;dat&quot; in .GlobalEnv</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">dist.ml</span>() <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># Compute distance</span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">NJ</span>() <span class="op">%&gt;%</span><span class="st">                             </span><span class="co"># Compute NJ (initial tree)</span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">pml</span>(<span class="dt">data =</span> dat, <span class="dt">k =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st">           </span><span class="co"># Compute likelihood with 4 discrete</span></a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="st">                                                 </span><span class="co">#  gamma distributions. </span></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">optim.pml</span>(<span class="dt">rearrangement =</span> <span class="st">&quot;stochastic&quot;</span>, <span class="co"># Optimize likelihood with</span></a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">                                                 <span class="co"># stochastic rearrangements,</span></a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">                      <span class="dt">optGamma =</span> <span class="ot">TRUE</span>,           <span class="co"># optimize gamma rate parameter,</span></a>
+<a class="sourceLine" id="cb8-22" data-line-number="22">                      <span class="dt">optInv =</span> <span class="ot">TRUE</span>,             <span class="co"># optimize prop of variable size,</span></a>
+<a class="sourceLine" id="cb8-23" data-line-number="23">                      <span class="dt">model =</span><span class="st">&quot;GTR&quot;</span>) <span class="op">%&gt;%</span><span class="st">          </span><span class="co"># and use &quot;GTR&quot; model.</span></a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="st">  </span>magrittr<span class="op">::</span><span class="kw">extract2</span>(<span class="st">&quot;tree&quot;</span>) <span class="op">%T&gt;%</span><span class="st"> </span>{              <span class="co"># Extract the tree only, and pass</span></a>
+<a class="sourceLine" id="cb8-25" data-line-number="25">    {                                            <span class="co">#  it to ggtree.</span></a>
+<a class="sourceLine" id="cb8-26" data-line-number="26">      ggtree<span class="op">::</span><span class="kw">ggtree</span>(.) <span class="op">%&lt;+%</span><span class="st">                        </span><span class="co"># Create ggtree</span></a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="st">        </span><span class="kw">as.data.frame</span>(p<span class="op">$</span>organisms) <span class="op">+</span><span class="st">                </span><span class="co"># Get organisms metadata</span></a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="st">        </span>ggtree<span class="op">::</span><span class="kw">geom_tippoint</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> host)) <span class="op">+</span><span class="st"> </span><span class="co"># Add coloured tip points</span></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="st">        </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">'Set1'</span>)        <span class="co"># Set color palette</span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30">    } <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="st">    </span><span class="kw">print</span>()</a>
+<a class="sourceLine" id="cb8-32" data-line-number="32">  }</a></code></pre></div>
+</div>
+<div id="population-structure" class="section level1">
+<h1>Population structure</h1>
+<p>Identifying population structure from genomic information is a common problem in microbial ecology. This aims to identify discrete sub-populations within a more heterogeneous population, which is helpful to detect associations with particular phenotypes, geographic origin, host-association, etc. There are various methods for doing this, but probably the most used in microbial genomics is <a href="https://academic.oup.com/mbe/article/30/5/1224/998212">hierBAPS</a> (Cheng et al., 2013) which has been re-implemented in <code>R</code> as <a href="https://wellcomeopenresearch.org/articles/3-93/v1">rhierBAPS</a> (Tonkin-Hill et al., 2018). In the following recipe we will combine previous examples to 1) align core clusters; 2) compute Tajima’s D statistic over aligned core clusters to identify the ones that are likely to be evolving neutrally; 3) concatenate selected neutral clusters; 4) Run the herBAPS algorithm; 5) extract lineage information and add it to the <code>pagoo</code> object as organism’s metadata; and 6) compute and plot a tree with lineage information as colour tips.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">library</span>(DECIPHER)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">library</span>(rhierbaps)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">library</span>(ape)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">library</span>(phangorn)</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># 0. Always use core_level at 100% when using DECIPHER::AlignTranslation()</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">p<span class="op">$</span>core_level &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co"># 1. Align translation of core genes</span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11">ali &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">core_seqs_4_phylo</span>() <span class="op">%&gt;%</span><span class="st">           </span><span class="co"># Core genome sequences</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span><span class="kw">lapply</span>(DECIPHER<span class="op">::</span>AlignTranslation)       <span class="co"># Align translation</span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co"># 2. Identify neutral core clusters</span></a>
+<a class="sourceLine" id="cb9-15" data-line-number="15">tajD &lt;-<span class="st"> </span>ali <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="st">  </span><span class="kw">lapply</span>(ape<span class="op">::</span>as.DNAbin) <span class="op">%&gt;%</span><span class="st">              </span><span class="co"># Transform class to DNAbin</span></a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="st">  </span><span class="kw">lapply</span>(pegas<span class="op">::</span>tajima.test) <span class="op">%&gt;%</span><span class="st">          </span><span class="co"># Compute Tajima's test</span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="st">  </span><span class="kw">sapply</span>(<span class="st">'[['</span>, <span class="st">'D'</span>)                       <span class="co"># Subset D statistic </span></a>
+<a class="sourceLine" id="cb9-19" data-line-number="19">neutral &lt;-<span class="st"> </span><span class="kw">which</span>(tajD <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>tajD <span class="op">&gt;=</span><span class="st"> </span><span class="dv">-2</span>)</a>
+<a class="sourceLine" id="cb9-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co"># 3. Concatenate neutral core clusters</span></a>
+<a class="sourceLine" id="cb9-22" data-line-number="22">concat_neu &lt;-<span class="st"> </span>ali[neutral] <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># Select neutral clusters</span></a>
+<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="st">  </span><span class="kw">do.call</span>(Biostrings<span class="op">::</span>xscat, .) <span class="op">%&gt;%</span><span class="st">       </span><span class="co"># Concatenate alignments</span></a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="st">  </span><span class="kw">setNames</span>(p<span class="op">$</span>organisms<span class="op">$</span>org) <span class="op">%&gt;%</span><span class="st">           </span><span class="co"># Set sequence names</span></a>
+<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="st">  </span><span class="kw">as</span>(<span class="st">'matrix'</span>) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># Transform to matrix</span></a>
+<a class="sourceLine" id="cb9-26" data-line-number="26"><span class="st">  </span><span class="kw">tolower</span>()                               <span class="co"># Translate to lower case</span></a>
+<a class="sourceLine" id="cb9-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb9-28" data-line-number="28"><span class="co"># 4. Compute structure</span></a>
+<a class="sourceLine" id="cb9-29" data-line-number="29">rhb &lt;-<span class="st"> </span><span class="kw">hierBAPS</span>(<span class="dt">snp.matrix =</span> concat_neu, <span class="co"># Input matrix alignment</span></a>
+<a class="sourceLine" id="cb9-30" data-line-number="30">                <span class="dt">n.pops =</span> <span class="dv">10</span>,             <span class="co"># Max number of subpopulations</span></a>
+<a class="sourceLine" id="cb9-31" data-line-number="31">                <span class="dt">max.depth =</span> <span class="dv">1</span>,           <span class="co"># Max depth for hierarchical clustering</span></a>
+<a class="sourceLine" id="cb9-32" data-line-number="32">                <span class="dt">n.extra.rounds =</span> <span class="dv">5</span>)      <span class="co"># Extra rounds to ensure convergence</span></a>
+<a class="sourceLine" id="cb9-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb9-34" data-line-number="34"><span class="co"># 5. Add lineage as metadata to organisms in pagoo object</span></a>
+<a class="sourceLine" id="cb9-35" data-line-number="35">res &lt;-<span class="st"> </span>rhb<span class="op">$</span>partition.df</a>
+<a class="sourceLine" id="cb9-36" data-line-number="36">lin &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">org =</span> <span class="kw">as.character</span>(res[, <span class="dv">1</span>]), </a>
+<a class="sourceLine" id="cb9-37" data-line-number="37">                  <span class="dt">lineage =</span> <span class="kw">as.factor</span>(res[, <span class="dv">2</span>]))</a>
+<a class="sourceLine" id="cb9-38" data-line-number="38">p<span class="op">$</span><span class="kw">add_metadata</span>(<span class="dt">map =</span> <span class="st">'org'</span>, <span class="dt">data =</span> lin)</a>
+<a class="sourceLine" id="cb9-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb9-40" data-line-number="40"><span class="co"># 6. Compute tree and plot it with lineage information</span></a>
+<a class="sourceLine" id="cb9-41" data-line-number="41">concat_neu <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-42" data-line-number="42"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">phyDat</span>(<span class="dt">type =</span> <span class="st">'DNA'</span>) <span class="op">%&gt;%</span><span class="st">                </span><span class="co"># Transform to phangorn's phyDat</span></a>
+<a class="sourceLine" id="cb9-43" data-line-number="43"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">dist.ml</span>() <span class="op">%&gt;%</span><span class="st">                           </span><span class="co"># Compute distance</span></a>
+<a class="sourceLine" id="cb9-44" data-line-number="44"><span class="st">  </span>phangorn<span class="op">::</span><span class="kw">NJ</span>() <span class="op">%&gt;%</span><span class="st">                                </span><span class="co"># Compute NJ</span></a>
+<a class="sourceLine" id="cb9-45" data-line-number="45"><span class="st">  </span>ggtree<span class="op">::</span><span class="kw">ggtree</span>() <span class="op">%&lt;+%</span><span class="st">                             </span><span class="co"># Create ggtree</span></a>
+<a class="sourceLine" id="cb9-46" data-line-number="46"><span class="st">     </span><span class="kw">as.data.frame</span>(p<span class="op">$</span>organisms) <span class="op">+</span><span class="st">                   </span><span class="co"># Get organisms metadata</span></a>
+<a class="sourceLine" id="cb9-47" data-line-number="47"><span class="st">     </span>ggtree<span class="op">::</span><span class="kw">geom_tippoint</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> lineage))   <span class="co"># Colour tips with lineage info</span></a></code></pre></div>
+</div>
+<div id="pairwise-distance-vs-pairwise-nucleotide-diversity" class="section level1">
+<h1>Pairwise distance vs pairwise nucleotide diversity</h1>
+<p>The following recipe computes accessory genome jaccard’s distance and nucleotide diversity of synonym sites for each pair of genomes, and then plot it with a linear regression curve. This method provides insights of accessory genome adaptative evolution. If both magnitudes are not correlated, it could mean that there are some selective pressures shaping clade’s evolution. It first sets the <code>core_level</code> threshold to 100%, then creates a matrix to store pairwise distances and synonym nucleotide diversities. Accessory genome Jaccard distance between each pair of organisms is computed by a <code>pagoo</code> method which is basically a wrapper of <code>vegan::vegdist</code> function. Then there is a long code block with the method to align each core gene and select their polymorphic synonym sites. With this input, pairwise nucleotide diversity is computed with <code>pegas::nuc.div</code> function. At the end, a correlation between both magnitudes is plotted.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">library</span>(IRanges)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">library</span>(Biostrings)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">library</span>(DECIPHER)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">library</span>(ape)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">library</span>(pegas)</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co"># Set core level to 100%. This recipe only works if this is set to 100%.</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">p<span class="op">$</span>core_level &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co"># Create pairs matrix</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">pairs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(<span class="kw">combn</span>(<span class="kw">nrow</span>(p<span class="op">$</span>organisms), <span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="kw">colnames</span>(pairs) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'org1'</span>, <span class="st">'org2'</span>)</a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co"># Compute paired jaccard similarity, transform to matrix</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">jaccard_sim &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(p<span class="op">$</span><span class="kw">dist</span>(<span class="dt">method =</span> <span class="st">&quot;jaccard&quot;</span>, <span class="dt">binary =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co"># Fill results matrix</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">pairs<span class="op">$</span>jaccard_sim &lt;-<span class="st"> </span><span class="kw">apply</span>(pairs, <span class="dv">1</span>, <span class="cf">function</span>(i){</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">  ii &lt;-<span class="st"> </span>i[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">  jj &lt;-<span class="st"> </span>i[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb10-21" data-line-number="21">  jaccard_sim[ii, jj]</a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">})</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="co"># Return only synonymous polymorphic sites.</span></a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"><span class="co"># First, it removes non-synonymous codons, and then retains only</span></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26"><span class="co"># polymorphyc sites.</span></a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">syn_poly_sites &lt;-<span class="st"> </span>p<span class="op">$</span><span class="kw">core_seqs_4_phylo</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-28" data-line-number="28"><span class="st">  </span><span class="kw">lapply</span>(<span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb10-29" data-line-number="29">    lns &lt;-<span class="st"> </span><span class="kw">elementNROWS</span>(x)                              <span class="co"># Align translatation filtering</span></a>
+<a class="sourceLine" id="cb10-30" data-line-number="30">    tali &lt;-<span class="st"> </span>x[<span class="kw">which</span>(lns <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)] <span class="op">%&gt;%</span><span class="st">                      </span><span class="co">#  truncated codons and returning</span></a>
+<a class="sourceLine" id="cb10-31" data-line-number="31"><span class="st">      </span>Biostrings<span class="op">::</span><span class="kw">subseq</span>(1L, lns <span class="op">%/%</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st">         </span><span class="co">#  both DNA and AA alignments.</span></a>
+<a class="sourceLine" id="cb10-32" data-line-number="32"><span class="st">      </span>DECIPHER<span class="op">::</span><span class="kw">AlignTranslation</span>(<span class="dt">type =</span> <span class="st">&quot;both&quot;</span>)</a>
+<a class="sourceLine" id="cb10-33" data-line-number="33">    syno &lt;-<span class="st">  </span>tali[[<span class="dv">2</span>]] <span class="op">%&gt;%</span><span class="st">                              </span><span class="co"># Identify non-synonymous</span></a>
+<a class="sourceLine" id="cb10-34" data-line-number="34"><span class="st">      </span>Biostrings<span class="op">::</span><span class="kw">consensusMatrix</span>() <span class="op">%&gt;%</span><span class="st">                 </span><span class="co">#  codons.</span></a>
+<a class="sourceLine" id="cb10-35" data-line-number="35"><span class="st">      </span>magrittr<span class="op">::</span><span class="kw">equals</span>(<span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-36" data-line-number="36"><span class="st">      </span>magrittr<span class="op">::</span><span class="kw">not</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-37" data-line-number="37"><span class="st">      </span><span class="kw">colSums</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-38" data-line-number="38"><span class="st">      </span>magrittr<span class="op">::</span><span class="kw">equals</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-39" data-line-number="39"><span class="st">      </span><span class="kw">which</span>()</a>
+<a class="sourceLine" id="cb10-40" data-line-number="40">    neut &lt;-<span class="st"> </span>tali[[<span class="dv">1</span>]] <span class="op">%&gt;%</span><span class="st">                               </span><span class="co"># Remove non-synonymous codons.</span></a>
+<a class="sourceLine" id="cb10-41" data-line-number="41"><span class="st">      </span><span class="kw">lapply</span>(<span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb10-42" data-line-number="42">        IRanges<span class="op">::</span><span class="kw">successiveViews</span>(</a>
+<a class="sourceLine" id="cb10-43" data-line-number="43">          x, <span class="kw">rep.int</span>(3L, <span class="kw">length</span>(x) <span class="op">%/%</span><span class="st"> </span>3L))</a>
+<a class="sourceLine" id="cb10-44" data-line-number="44">      }) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-45" data-line-number="45"><span class="st">      </span><span class="kw">lapply</span>(<span class="st">'['</span>, syno) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-46" data-line-number="46"><span class="st">      </span><span class="kw">lapply</span>(unlist) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-47" data-line-number="47"><span class="st">      </span>Biostrings<span class="op">::</span><span class="kw">DNAStringSet</span>()</a>
+<a class="sourceLine" id="cb10-48" data-line-number="48">    poly &lt;-<span class="st"> </span>neut <span class="op">%&gt;%</span><span class="st">                                   </span><span class="co"># Identify polymorphic sites.</span></a>
+<a class="sourceLine" id="cb10-49" data-line-number="49"><span class="st">      </span>Biostrings<span class="op">::</span><span class="kw">consensusMatrix</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-50" data-line-number="50"><span class="st">      </span>magrittr<span class="op">::</span><span class="kw">equals</span>(<span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-51" data-line-number="51"><span class="st">      </span>magrittr<span class="op">::</span><span class="kw">not</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-52" data-line-number="52"><span class="st">      </span><span class="kw">colSums</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-53" data-line-number="53"><span class="st">      </span>magrittr<span class="op">::</span><span class="kw">is_greater_than</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-54" data-line-number="54"><span class="st">      </span><span class="kw">which</span>()</a>
+<a class="sourceLine" id="cb10-55" data-line-number="55">    <span class="kw">lapply</span>(neut, <span class="st">'['</span>, poly) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># Retain only polymorphic</span></a>
+<a class="sourceLine" id="cb10-56" data-line-number="56"><span class="st">      </span>Biostrings<span class="op">::</span><span class="kw">DNAStringSet</span>()                       <span class="co">#  sites</span></a>
+<a class="sourceLine" id="cb10-57" data-line-number="57">  }) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-58" data-line-number="58"><span class="st">  </span><span class="kw">do.call</span>(Biostrings<span class="op">::</span>xscat, .) <span class="op">%&gt;%</span><span class="st">                    </span><span class="co"># Concatenate.</span></a>
+<a class="sourceLine" id="cb10-59" data-line-number="59"><span class="st">  </span><span class="kw">setNames</span>(p<span class="op">$</span>organisms<span class="op">$</span>org) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># Set names.</span></a>
+<a class="sourceLine" id="cb10-60" data-line-number="60"><span class="st">  </span>ape<span class="op">::</span><span class="kw">as.DNAbin</span>()                                     <span class="co"># Convert to DNAbin class.</span></a>
+<a class="sourceLine" id="cb10-61" data-line-number="61"></a>
+<a class="sourceLine" id="cb10-62" data-line-number="62"><span class="co"># Compute paired nucleotide diversity, and fill results matrix</span></a>
+<a class="sourceLine" id="cb10-63" data-line-number="63">pairs<span class="op">$</span>nuc_div &lt;-<span class="st"> </span><span class="kw">apply</span>(pairs, <span class="dv">1</span>, <span class="cf">function</span>(i){</a>
+<a class="sourceLine" id="cb10-64" data-line-number="64">  ii &lt;-<span class="st"> </span>i[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb10-65" data-line-number="65">  jj &lt;-<span class="st"> </span>i[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb10-66" data-line-number="66">  pair &lt;-<span class="st"> </span><span class="kw">c</span>(syn_poly_sites[ii], syn_poly_sites[jj])</a>
+<a class="sourceLine" id="cb10-67" data-line-number="67">  pegas<span class="op">::</span><span class="kw">nuc.div</span>(pair)</a>
+<a class="sourceLine" id="cb10-68" data-line-number="68">})</a>
+<a class="sourceLine" id="cb10-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb10-70" data-line-number="70"><span class="co"># Plot correlation with R-base graphics</span></a>
+<a class="sourceLine" id="cb10-71" data-line-number="71"><span class="kw">plot</span>(jaccard_sim <span class="op">~</span><span class="st"> </span>nuc_div, pairs)</a>
+<a class="sourceLine" id="cb10-72" data-line-number="72"><span class="kw">abline</span>(<span class="kw">lm</span>(jaccard_sim <span class="op">~</span><span class="st"> </span>nuc_div, pairs))</a></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

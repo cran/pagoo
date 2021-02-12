@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Querying Data</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Querying Data</h1>
+
+
+
+<style type="text/css">
+pre, code {white-space:pre !important; overflow-x:auto;}
+</style>
+<p>In this section we will start exploring what is stored inside the <code>pagoo</code> object and how we can access this information. Keep in mind that this object has its own associated data and methods that can be easily queried with the <code>$</code> operator. These methods allow for the rapid subsetting, extraction and visualization of pangenome data.</p>
+<p>First of all, we will load a pangenome using a toy dataset included in the package. This is a preloaded set of 10 <em>Campylobacter spp.</em> genomes, with metadata associated.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(pagoo) <span class="co"># Load package</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">rds &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'campylobacter.RDS'</span>, <span class="dt">package =</span> <span class="st">'pagoo'</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">p &lt;-<span class="st"> </span><span class="kw">load_pangenomeRDS</span>(rds)</a></code></pre></div>
+<div id="summary-statistics" class="section level1">
+<h1>Summary statistics</h1>
+<p>A pangenome can be stratified in different gene subsets according to their frequency in the dataset. The <code>core genes</code> can be defined as those present in all or almost every genome (typically 95-100%). The remaining genes are defined as the accessory genome, that can be subdivided in <code>cloud genes</code> or singletons (present in one genome or in genomes that are identical) and <code>shell genes</code> which are those in the middle. Let’s see this using <code>pagoo</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">p<span class="op">$</span>summary_stats</a></code></pre></div>
+<pre><code>## DataFrame with 4 rows and 2 columns
+##      Category    Number
+##   &lt;character&gt; &lt;integer&gt;
+## 1       Total      2588
+## 2        Core      1627
+## 3       Shell       413
+## 4       Cloud       548</code></pre>
+<div id="core-level" class="section level2">
+<h2>Core level</h2>
+<p>The <code>core level</code> defines the minimum number of genomes (as a percentage) in which a certain gene should be present to be considered a core gene. By default, <code>pagoo</code> considers as core all genes present in at least 95% of organisms. The core level can be modified to be more or less stringent defining the core genome. This feature exemplifies R6’s reference semantics, since modifying the core level will affect the pangenome object state resulting in different core, shell and cloud sets. Have a look:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">p<span class="op">$</span>core_level       </a></code></pre></div>
+<pre><code>## [1] 95</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">p<span class="op">$</span>core_level &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># Change value</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">p<span class="op">$</span>summary_stats     <span class="co"># Updated object</span></a></code></pre></div>
+<pre><code>## DataFrame with 4 rows and 2 columns
+##      Category    Number
+##   &lt;character&gt; &lt;integer&gt;
+## 1       Total      2588
+## 2        Core      1554
+## 3       Shell       486
+## 4       Cloud       548</code></pre>
+<p>As you can see, changing the core level from 95% to a more stringent 100% cause in decrease in the number of core genes from 1627 to 1554, and a concomitant increase in shell genes from 413 to 486. This means that 73 genes migrated from core to shell when increasing the threshold to consider a cluster as “core” to 100%. Now this changes remain in the object for subsequent analysis, or can be reverted by setting the core level again at the original value.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">p<span class="op">$</span>core_level &lt;-<span class="st"> </span><span class="dv">95</span></a></code></pre></div>
+</div>
+</div>
+<div id="pangenome-matrix" class="section level1">
+<h1>Pangenome matrix</h1>
+<p>The pangenome matrix is one of the most useful things when analyzing pangenomes. Typically, it represents organisms in rows and clusters of orthologous in columns informing about gene abundance (considering paralogues). The pangenome matrix looks like this (printing only first 5 columns):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">p<span class="op">$</span>pan_matrix[, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##            group0001 group0002 group0003 group0004 group0005
+## 16244_6_6          1         1         1         1         1
+## 16244_6_18         1         1         1         1         1
+## 17059_2_16         1         1         1         1         1
+## 17059_2_23         1         1         1         1         0
+## 17059_2_27         1         1         1         1         1
+## 17150_1_73         1         1         1         1         1
+## 17059_2_42         1         1         1         1         0</code></pre>
+</div>
+<div id="gene-metadata" class="section level1">
+<h1>Gene metadata</h1>
+<p>Individual gene metadata can be accessed by using the <code>$genes</code> suffix. It always contains the gene name, the organism to which it belongs, the cluster to where it was assigned, and a gene identifier (<code>gid</code>) that is mainly used internally to organize the data. Also, it may typically include annotation data, genomic coordinates, etc, but this other metadata is optional. Gene metadata is spitted by cluster, so it consist in a <code>List</code> of <code>DataFrame</code>s.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">p<span class="op">$</span>genes</a></code></pre></div>
+<pre><code>## SplitDataFrameList of length 2588
+## $group0001
+## DataFrame with 7 rows and 10 columns
+##     cluster        org             gene                          gid
+##    &lt;factor&gt;   &lt;factor&gt;         &lt;factor&gt;                  &lt;character&gt;
+## 1 group0001 16244_6_6  16244_6_6_00150    16244_6_6__16244_6_6_00150
+## 2 group0001 16244_6_18 16244_6_18_00172 16244_6_18__16244_6_18_00172
+## 3 group0001 17059_2_16 17059_2_16_01012 17059_2_16__17059_2_16_01012
+## 4 group0001 17059_2_23 17059_2_23_01040 17059_2_23__17059_2_23_01040
+## 5 group0001 17059_2_27 17059_2_27_00492 17059_2_27__17059_2_27_00492
+## 6 group0001 17150_1_73 17150_1_73_00221 17150_1_73__17150_1_73_00221
+## 7 group0001 17059_2_42 17059_2_42_00176 17059_2_42__17059_2_42_00176
+##      geneName
+##   &lt;character&gt;
+## 1        ilvC
+## 2        ilvC
+## 3        ilvC
+## 4        ilvC
+## 5        ilvC
+## 6        ilvC
+## 7        ilvC
+##                                                                                                                                                                  product
+##                                                                                                                                                              &lt;character&gt;
+## 1 ketol-acid reductoisomerase,Ketol-acid reductoisomerase,ketol-acid reductoisomerase,ketol-acid reductoisomerase,Acetohydroxy acid isomeroreductase%2C catalytic domain
+## 2 ketol-acid reductoisomerase,Ketol-acid reductoisomerase,ketol-acid reductoisomerase,ketol-acid reductoisomerase,Acetohydroxy acid isomeroreductase%2C catalytic domain
+## 3 ketol-acid reductoisomerase,Ketol-acid reductoisomerase,ketol-acid reductoisomerase,ketol-acid reductoisomerase,Acetohydroxy acid isomeroreductase%2C catalytic domain
+## 4 ketol-acid reductoisomerase,Ketol-acid reductoisomerase,ketol-acid reductoisomerase,ketol-acid reductoisomerase,Acetohydroxy acid isomeroreductase%2C catalytic domain
+## 5 ketol-acid reductoisomerase,Ketol-acid reductoisomerase,ketol-acid reductoisomerase,ketol-acid reductoisomerase,Acetohydroxy acid isomeroreductase%2C catalytic domain
+## 6 ketol-acid reductoisomerase,Ketol-acid reductoisomerase,ketol-acid reductoisomerase,ketol-acid reductoisomerase,Acetohydroxy acid isomeroreductase%2C catalytic domain
+## 7 ketol-acid reductoisomerase,Ketol-acid reductoisomerase,ketol-acid reductoisomerase,ketol-acid reductoisomerase,Acetohydroxy acid isomeroreductase%2C catalytic domain
+##                      contig      from        to      strand
+##                 &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt;
+## 1 ERS672247|SC|contig000001    137333    138355           +
+## 2 ERS672259|SC|contig000001    173541    174563           +
+## 3 ERS739235|SC|contig000005     43645     44667           -
+## 4 ERS739242|SC|contig000004    173578    174600           +
+## 5 ERS739246|SC|contig000002    184035    185057           -
+## 6 ERS686652|SC|contig000001    207206    208228           +
+## 7 ERS739261|SC|contig000001    173569    174591           +
+## 
+## $group0002
+## DataFrame with 7 rows and 10 columns
+##     cluster        org             gene                          gid
+##    &lt;factor&gt;   &lt;factor&gt;         &lt;factor&gt;                  &lt;character&gt;
+## 1 group0002 16244_6_6  16244_6_6_01290    16244_6_6__16244_6_6_01290
+## 2 group0002 16244_6_18 16244_6_18_01307 16244_6_18__16244_6_18_01307
+## 3 group0002 17059_2_16 17059_2_16_01627 17059_2_16__17059_2_16_01627
+## 4 group0002 17059_2_23 17059_2_23_00348 17059_2_23__17059_2_23_00348
+## 5 group0002 17059_2_27 17059_2_27_01208 17059_2_27__17059_2_27_01208
+## 6 group0002 17150_1_73 17150_1_73_01398 17150_1_73__17150_1_73_01398
+## 7 group0002 17059_2_42 17059_2_42_00751 17059_2_42__17059_2_42_00751
+##      geneName
+##   &lt;character&gt;
+## 1        hprA
+## 2        hprA
+## 3        hprA
+## 4        hprA
+## 5        hprA
+## 6        hprA
+## 7        hprA
+##                                                                                                                                                                                                                                  product
+##                                                                                                                                                                                                                              &lt;character&gt;
+## 1 2-hydroxyacid dehydrogenase,Putative 2-hydroxyacid dehydrogenase HI_1556,2-hydroxyacid dehydrogenase,Phosphoserine aminotransferase,phosphoglycerate dehydrogenase,D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain
+## 2 2-hydroxyacid dehydrogenase,Putative 2-hydroxyacid dehydrogenase HI_1556,2-hydroxyacid dehydrogenase,Phosphoserine aminotransferase,phosphoglycerate dehydrogenase,D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain
+## 3 2-hydroxyacid dehydrogenase,Putative 2-hydroxyacid dehydrogenase HI_1556,2-hydroxyacid dehydrogenase,Phosphoserine aminotransferase,phosphoglycerate dehydrogenase,D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain
+## 4 2-hydroxyacid dehydrogenase,Putative 2-hydroxyacid dehydrogenase HI_1556,2-hydroxyacid dehydrogenase,Phosphoserine aminotransferase,phosphoglycerate dehydrogenase,D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain
+## 5 2-hydroxyacid dehydrogenase,Putative 2-hydroxyacid dehydrogenase HI_1556,2-hydroxyacid dehydrogenase,Phosphoserine aminotransferase,phosphoglycerate dehydrogenase,D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain
+## 6 2-hydroxyacid dehydrogenase,Putative 2-hydroxyacid dehydrogenase HI_1556,2-hydroxyacid dehydrogenase,Phosphoserine aminotransferase,phosphoglycerate dehydrogenase,D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain
+## 7 2-hydroxyacid dehydrogenase,Putative 2-hydroxyacid dehydrogenase HI_1556,2-hydroxyacid dehydrogenase,Phosphoserine aminotransferase,phosphoglycerate dehydrogenase,D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain
+##                      contig      from        to      strand
+##                 &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt;
+## 1 ERS672247|SC|contig000003    274585    275517           -
+## 2 ERS672259|SC|contig000003    272748    273680           -
+## 3 ERS739235|SC|contig000012     11617     12549           +
+## 4 ERS739242|SC|contig000001    308107    309039           -
+## 5 ERS739246|SC|contig000005    114555    115487           -
+## 6 ERS686652|SC|contig000003    273866    274798           -
+## 7 ERS739261|SC|contig000003     15409     16341           +
+## 
+## ...
+## &lt;2586 more elements&gt;</code></pre>
+<p>If you want to work with this data as a single <code>DataFrame</code>, just <code>unlist</code> it:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">unlist</span>(p<span class="op">$</span>genes, <span class="dt">use.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><code>pagoo</code> also includes predefined subsets fields to list only certain pangenome category, these are queried by adding a prefix with the desired category followed by an underscore: <code>$core_genes</code>, <code>$shell_genes</code>, and <code>$cloud_genes</code>. These kind of subsets are better explained in the ‘4 - Subets’ tutorial, and also apply to other pangenome data described below.</p>
+</div>
+<div id="clusters-metadata" class="section level1">
+<h1>Clusters metadata</h1>
+<p>Groups of orthologues (clusters) are also stored in <code>pagoo</code> objects as a table with a cluster identifier per row, and optional metadata associated as additional columns.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">p<span class="op">$</span>clusters</a></code></pre></div>
+<pre><code>## DataFrame with 2588 rows and 2 columns
+##        cluster                   Pfam_Arch
+##       &lt;factor&gt;                 &lt;character&gt;
+## 1    group0001                2-Hacid_dh_C
+## 2    group0002     2-Hacid_dh_C;2-Hacid_dh
+## 3    group0003 2-Hacid_dh_C;ACT;2-Hacid_dh
+## 4    group0004             2Fe-2S_thioredx
+## 5    group0005         4HB_MCP_1;MCPsignal
+## ...        ...                         ...
+## 2584 group2584                   zf-RING_7
+## 2585 group2585                    zf-TFIIB
+## 2586 group2586                        ZinT
+## 2587 group2587                        ZnuA
+## 2588 group2588                    ZT_dimer</code></pre>
+<p>Subsets also exists for this field: <code>$core_clusters</code>, <code>$shell_clusters</code>, and <code>$cloud_clusters</code>.</p>
+</div>
+<div id="sequences" class="section level1">
+<h1>Sequences</h1>
+<p>Although is an optional field (it exists only if user provide this data as an argument when object is created), <code>$sequences</code> gives access to sequence data. Sequences are stored as a <code>List</code> of <code>DNAStringSet</code> (a.k.a <code>DNAStringSetList</code>, Biostrings package), grouped by cluster.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">p<span class="op">$</span>sequences             <span class="co"># List all sequences grouped by cluster</span></a></code></pre></div>
+<pre><code>## DNAStringSetList of length 2588
+## [[&quot;group0001&quot;]] 16244_6_6__16244_6_6_00150=ATGGCGATAACAGTTTATTACGACAAAGATTGCG...
+## [[&quot;group0002&quot;]] 16244_6_6__16244_6_6_01290=ATGAAAATAGTATGCTTAGATGCCGACACGCTTG...
+## [[&quot;group0003&quot;]] 16244_6_6__16244_6_6_01710=ATGAAAACAGTTATAGTTTGCGATGCAATACATC...
+## [[&quot;group0004&quot;]] 16244_6_6__16244_6_6_01754=ATGAAATTCGAATTTACTCATGAGCAATTATCGG...
+## [[&quot;group0005&quot;]] 16244_6_6__16244_6_6_00049=ATGTCAAATTTAACTACTAACTTAACTACCAAAA...
+## [[&quot;group0006&quot;]] 16244_6_6__16244_6_6_01069=ATGAATTATTTTGAGAATTTAAAAGTTTCAACAA...
+## [[&quot;group0007&quot;]] 16244_6_6__16244_6_6_01612=ATGCGAATTAGAATTTATTATGAAGATACCGATG...
+## [[&quot;group0008&quot;]] 16244_6_6__16244_6_6_01679=ATGATGAAAGATATGGGCGAGCCACGTATAAAAA...
+## [[&quot;group0009&quot;]] 16244_6_18__16244_6_18_01216=ATGGGGCTTACTACGAGTACGACAAAGTATAT...
+## [[&quot;group0010&quot;]] 16244_6_6__16244_6_6_00758=ATGAAAAGAGTGGTTATAAAAGTAGGCTCTCACG...
+## ...
+## &lt;2578 more elements&gt;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">p<span class="op">$</span>sequences[[<span class="st">&quot;group0001&quot;</span>]]  <span class="co"># List first cluster</span></a></code></pre></div>
+<pre><code>## DNAStringSet object of length 7:
+##     width seq                                               names               
+## [1]  1023 ATGGCGATAACAGTTTATTACGA...TAGTTAATAAAGACAAAAATTAA 16244_6_6__16244_...
+## [2]  1023 ATGGCGATAACAGTTTATTACGA...TAGTTAATAAAGACAAAAATTAA 16244_6_18__16244...
+## [3]  1023 ATGGCGATAACAGTTTATTACGA...TAGTTAATAAAGACAAAAATTAA 17059_2_16__17059...
+## [4]  1023 ATGGCGATAACAGTTTATTACGA...TAGTTAATAAAGACAAAAATTAA 17059_2_23__17059...
+## [5]  1023 ATGGCGATAACAGTTTATTACGA...TAGTTAATAAAGACAAAAATTAA 17059_2_27__17059...
+## [6]  1023 ATGGCGATAACAGTTTATTACGA...TAGTTAATAAAGACAAAAATTAA 17150_1_73__17150...
+## [7]  1023 ATGGCGATAACAGTTTATTACGA...TAGTTAATAAAGACAAAAATTAA 17059_2_42__17059...</code></pre>
+<p>Note that sequence names are created by pasting organism names and gene names, separated by a string that by default is <code>sep = '__'</code> (two underscores). This are the same as the <code>gid</code> column in the <code>$genes</code> field, and are initially set when <code>pagoo</code> object is created. If you think your dataset contain names with this separator, then you should set this parameter to other string to avoid conflicts. <code>$sequences</code> field also has predefined subsets: <code>$core_sequences</code>, <code>$shell_sequences</code>, and <code>$cloud_sequences</code>.</p>
+</div>
+<div id="organism-metadata" class="section level1">
+<h1>Organism metadata</h1>
+<p>The <code>$organisms</code> field contain a table with organisms and metadata as additional columns if provided.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">p<span class="op">$</span>organisms</a></code></pre></div>
+<pre><code>## DataFrame with 7 rows and 8 columns
+##          org          id      strain      year     country        host
+##     &lt;factor&gt; &lt;character&gt; &lt;character&gt; &lt;integer&gt; &lt;character&gt; &lt;character&gt;
+## 1 16244_6_6         FR15   2008/170h      2008      France       Human
+## 2 16244_6_18        FR27   2012/185h      2012      France       Human
+## 3 17059_2_16         AR1      99/801      1999   Argentina      Bovine
+## 4 17059_2_23         AR8      04/875      2004   Argentina      Bovine
+## 5 17059_2_27        AR12      06/195      2006   Argentina      Bovine
+## 6 17150_1_73         CA1   001A-0374      2005      Canada       Human
+## 7 17059_2_42         TW6        1830      2008      Taiwan       Human
+##        source   accession
+##   &lt;character&gt; &lt;character&gt;
+## 1       Feces   ERS672247
+## 2       Blood   ERS672259
+## 3     Prepuce   ERS739235
+## 4       Fetus   ERS739242
+## 5          VM   ERS739246
+## 6       Blood   ERS686652
+## 7       Blood   ERS739261</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
