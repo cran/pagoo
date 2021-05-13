@@ -66,22 +66,45 @@ pie <- p$gg_pie() +                                         # Plot pie chart
 #  p$pan_matrix %>% micropan::fluidity(n.sim = 100)
 
 ## ---- eval=FALSE--------------------------------------------------------------
-#  # Load required packages
-#  if (!require(rBlast)) devtools::install_github('mhahsler/rBLAST')
-#  library(Biostrings)
-#  library(rBLAST)
+#  p$sequences %>%                                     # Get the sequences
+#    lapply("[[", 1) %>%                               # Select the first one as representative.
+#    unlist() %>%                                      # Unlist and..
+#    DNAStringSet() %>%                                # ..transform to DNAStringSet.
+#    translate(if.fuzzy.codon = "solve") %>%           # Translate.
+#    writeXStringSet(filepath = "representatives.fasta") # Write a fasta file.
+
+## ---- eval=FALSE--------------------------------------------------------------
 #  library(magrittr)
 #  
-#  db_path <- 'path/to/custom/blastpdb'        # Path to custom blastp db
-#  db <- blast(db = db_path, type = 'blastp')  # Set blastdb
+#  # Read the annotations file
+#  emap <- read.csv("representatives.emapper.annotations",
+#                   sep = "\t",
+#                   comment.char = "#",
+#                   header = FALSE,
+#                   na.strings = "-")
 #  
-#  blast_result <- p$sequences %>%             # Pangenome sequences
-#    lapply('[[', 1L) %>%                      # Subset 1 sequence from each cluster
-#    Biostrings::DNAStringSet() %>%            # Transform list to DNAStringSet
-#    Biostrings::translate() %>%               # Translate DNAStringSet
-#    rBLAST::predict.BLAST(db, .)              # Run blastp. Returns data.frame
+#  # Set column names
+#  colnames(emap) <- c("query", "seed_ortholog", "evalue", "score", "eggNOG_OGs",
+#                      "max_annot_lvl", "COG_category", "Description", "Preferred_name",
+#                      "GOs", "EC", "KEGG_ko", "KEGG_Pathway", "KEGG_Module", "KE",
+#                      "GG_Reaction", "KEGG_rclass", "BRITE", "CAZy",
+#                      "BiGG_Reaction", "PFAMs")
 #  
-#  ### ADD METADATA STEP MISSING
+#  # Lets take only some of them which I usually find useful. Subset the data.frame:
+#  cluster_meta <- emap[, c("query", "COG_category", "KEGG_ko", "CAZy")]
+#  
+#  # Clean and parse the fields before feeding it to the pangenome
+#  cluster_meta$COG_category <- cluster_meta$COG_category %>% strsplit("")
+#  cluster_meta$KEGG_ko <- clusert_meta$KEGG_ko %>%
+#    gsub("ko:", "", .) %>%
+#    strsplit(",")
+#  cluster_meta$CAZy <- cluster_meta$CAZy %>% strsplit("")
+#  
+#  # Add the metadata to the pangenome clusters
+#  p$add_metadata("cluster", cluster_meta)
+#  
+#  # Now the object contains the new information in the clusters field:
+#  p$clusters
 
 ## ---- eval=FALSE--------------------------------------------------------------
 #  # Load required packages
