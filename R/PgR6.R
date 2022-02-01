@@ -122,7 +122,7 @@ PgR6 <- R6Class('PgR6',
                       if (!class(org_meta)%in%c('data.frame', 'DataFrame', 'DFrame'))
                         stop('"org_meta" should be a data.frame.')
                       if('org'%in%colnames(org_meta)){
-                        ma <- match(org_meta$org, orgs_data$org)
+                        ma <- match(orgs_data$org, org_meta$org)
                         if (any(is.na(ma))) stop('org_meta$org do not match with data$org')
                         org_meta <- org_meta[ma, ]
                         oc <- which(colnames(org_meta)=='org')
@@ -140,7 +140,7 @@ PgR6 <- R6Class('PgR6',
                       if (!class(cluster_meta)%in%c('data.frame', 'DataFrame', 'DFrame'))
                         stop('"cluster_meta" should be a data.frame')
                       if ('cluster'%in%colnames(cluster_meta)){
-                        ma <- match(cluster_meta$cluster, cluster_data$cluster)
+                        ma <- match(cluster_data$cluster, cluster_meta$cluster)
                         if (any(is.na(ma))) stop('cluster_meta$cluster do not match with data$cluster')
                         cluster_meta <- cluster_meta[ma, ]
                         oc <- which(colnames(cluster_meta)=='cluster')
@@ -214,7 +214,17 @@ PgR6 <- R6Class('PgR6',
                           private$.organisms[[nwcls[x]]] <- NULL
                         }))
                         for (i in seq_along(nwcls)){
-                          private$.organisms[[nwcls[i]]][ma] <- data[[nwcls[i]]]
+                          dd <- data[[nwcls[i]]]
+                          cl <- class(dd)
+                          na <- switch(cl,
+                                       "character" = NA_character_,
+                                       "integer" = NA_integer_,
+                                       "numeric" = NA_real_,
+                                       "logical" = NA
+                                       )
+                          nas <- rep(na, dim(private$.organisms)[1])
+                          private$.organisms[[nwcls[i]]] <- nas
+                          private$.organisms[[nwcls[i]]][ma] <- dd
                         }
                       }else{
                         stop('"data" should contain an "org" column.')
@@ -234,7 +244,17 @@ PgR6 <- R6Class('PgR6',
                           private$.clusters[[nwcls[x]]] <- NULL
                         }))
                         for (i in seq_along(nwcls)){
-                          private$.clusters[[nwcls[i]]][ma] <- data[[nwcls[i]]]
+                          dd <- data[[nwcls[i]]]
+                          cl <- class(dd)
+                          na <- switch(cl,
+                                       "character" = NA_character_,
+                                       "integer" = NA_integer_,
+                                       "numeric" = NA_real_,
+                                       "logical" = NA
+                          )
+                          nas <- rep(na, dim(private$.clusters)[1])
+                          private$.clusters[[nwcls[i]]] <- nas
+                          private$.clusters[[nwcls[i]]][ma] <- dd
                         }
                       }else{
                         stop('"data" should contain a "cluster" column.')
@@ -254,7 +274,17 @@ PgR6 <- R6Class('PgR6',
                           private$.data[[nwcls[x]]] <- NULL
                         }))
                         for (i in seq_along(nwcls)){
-                          private$.data[[nwcls[i]]][ma] <- data[[nwcls[i]]]
+                          dd <- data[[nwcls[i]]]
+                          cl <- class(dd)
+                          na <- switch(cl,
+                                       "character" = NA_character_,
+                                       "integer" = NA_integer_,
+                                       "numeric" = NA_real_,
+                                       "logical" = NA
+                          )
+                          nas <- rep(na, dim(private$.data)[1])
+                          private$.data[[nwcls[i]]] <- nas
+                          private$.data[[nwcls[i]]][ma] <- dd
                         }
                       }else{
                         stop('"data" should contain a "gid" column.')

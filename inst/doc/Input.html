@@ -357,14 +357,14 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">untar</span>(<span class="dt">tarfile =</span> tgz, <span class="dt">exdir =</span> <span class="kw">tempdir</span>()) <span class="co"># Decompress example dataset</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>, <span class="dt">pattern =</span> <span class="st">&#39;tsv$|fasta$&#39;</span>) <span class="co"># List files</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>files</span></code></pre></div>
-<pre><code>## [1] &quot;/tmp/RtmpqRNE8r/case_clusters_meta.tsv&quot;
-## [2] &quot;/tmp/RtmpqRNE8r/case_df.tsv&quot;           
-## [3] &quot;/tmp/RtmpqRNE8r/case_orgs_meta.tsv&quot;    
-## [4] &quot;/tmp/RtmpqRNE8r/organismA.fasta&quot;       
-## [5] &quot;/tmp/RtmpqRNE8r/organismB.fasta&quot;       
-## [6] &quot;/tmp/RtmpqRNE8r/organismC.fasta&quot;       
-## [7] &quot;/tmp/RtmpqRNE8r/organismD.fasta&quot;       
-## [8] &quot;/tmp/RtmpqRNE8r/organismE.fasta&quot;</code></pre>
+<pre><code>## [1] &quot;/tmp/Rtmpwl0FiU/case_clusters_meta.tsv&quot;
+## [2] &quot;/tmp/Rtmpwl0FiU/case_df.tsv&quot;           
+## [3] &quot;/tmp/Rtmpwl0FiU/case_orgs_meta.tsv&quot;    
+## [4] &quot;/tmp/Rtmpwl0FiU/organismA.fasta&quot;       
+## [5] &quot;/tmp/Rtmpwl0FiU/organismB.fasta&quot;       
+## [6] &quot;/tmp/Rtmpwl0FiU/organismC.fasta&quot;       
+## [7] &quot;/tmp/Rtmpwl0FiU/organismD.fasta&quot;       
+## [8] &quot;/tmp/Rtmpwl0FiU/organismE.fasta&quot;</code></pre>
 <p>The file we need now is <code>case_df.tsv</code>. Lets load it and see what’s its structure:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>data_file &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;case_df.tsv&quot;</span>, files, <span class="dt">value =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">read.table</span>(data_file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>, <span class="dt">quote =</span> <span class="st">&#39;&#39;</span>)</span>
@@ -468,7 +468,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>All the above stuff with preparing data and loading classes seems difficult and time-consuming, but in real life working datasets this will be rarely needed. We are explaining it here to provide full details about how the software works, but this package also provides functions to automatically read-in output files from pangenome reconstruction software into <code>pagoo</code>, avoiding any formatting or manipulation of data.</p>
 <p>Currently <code>pagoo</code> supports input from <a href="https://sanger-pathogens.github.io/Roary/">roary</a> (Page et al., 2015), which has been the standard and most cited software for pangenome reconstruction, and <a href="https://github.com/gtonkinhill/panaroo">panaroo</a> (Tonkin-Hill et al., 2020). It is worth noticing that as roary become the most used software in this field, other tools as <a href="https://github.com/zheminzhou/PEPPAN">PEPPAN</a>, <a href="https://github.com/SionBayliss/PIRATE">PRIATE</a> and panaroo include scripts to convert their output to roary’s format. To work with <code>roary</code>’s output, please refer to <code>?roary_2_pagoo</code> documentation. Although panaroo also includes a tool for this, we provide a function to load their native output format, see <code>?panaroo_2_pagoo</code>. For both functions you will only need the <code>.gff</code> files used as input for roary of panaroo, and the <code>gene_presence_absence.csv</code> file.</p>
 <p>Also, we have created our own pangenome reconstruction software called <a href="https://github.com/iferres/pewit">pewit</a> (Ferrés et al., still unpublished), which automatically generates a <code>pagoo</code>-like object to perform downstream analyses. This object contain all the methods and fields <code>pagoo</code> provides, plus a set of methods and fields exclusive to this software.</p>
-<p>Other good pangenome reconstruction software already exists like <a href="https://pangenome.tuebingen.mpg.de">PanX</a> (Ding et al., 2018), <a href="https://github.com/cran/micropan">micropan</a> (Snipen &amp; Liland, 2015), <a href="https://github.com/eead-csic-compbio/get_homologues">GET_HOMOLOGUES</a> (Contreras-Moreira &amp; Vinuesa, 2013), among others. We plan to provide support to some of them in the future.</p>
+<p>Other good pangenome reconstruction software already exists like <a href="https://pangenome.org/">PanX</a> (Ding et al., 2018), <a href="https://github.com/cran/micropan">micropan</a> (Snipen &amp; Liland, 2015), <a href="https://github.com/eead-csic-compbio/get_homologues">GET_HOMOLOGUES</a> (Contreras-Moreira &amp; Vinuesa, 2013), among others. We plan to provide support to some of them in the future.</p>
 </div>
 <div id="adding-metadata-after-object-creation" class="section level1">
 <h1>Adding Metadata After Object Creation</h1>
@@ -493,9 +493,9 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>tmp &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;pangenome&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>p<span class="op">$</span><span class="kw">write_pangenome</span>(<span class="dt">dir =</span> tmp)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="kw">list.files</span>(tmp, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;/tmp/RtmpqRNE8r/pangenome/clusters.tsv&quot; 
-## [2] &quot;/tmp/RtmpqRNE8r/pangenome/data.tsv&quot;     
-## [3] &quot;/tmp/RtmpqRNE8r/pangenome/organisms.tsv&quot;</code></pre>
+<pre><code>## [1] &quot;/tmp/Rtmpwl0FiU/pangenome/clusters.tsv&quot; 
+## [2] &quot;/tmp/Rtmpwl0FiU/pangenome/data.tsv&quot;     
+## [3] &quot;/tmp/Rtmpwl0FiU/pangenome/organisms.tsv&quot;</code></pre>
 <p>This creates a directory with 3 text files. The advantage of this approach is that you can analyze it outside R, the disadvantage is that from a reproducibility point of view reading text could be less stable since class or number precision can be lost, and also you can’t save the state of the object in any given time. Only available organisms/genes/clusters are saved, and if you reload the class using the tsv files, any previously dropped organisms/gene/cluster won’t be available any more. (For information about dropping/recovering organisms, see “Subset” tutorial).</p>
 <p>If you want to save the object and continue working with it in other R session, we recommend to save them as R objects with the RDS methods provided:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>rds &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;pangenome.RDS&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
