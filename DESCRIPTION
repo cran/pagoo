@@ -1,5 +1,5 @@
 Package: pagoo
-Version: 0.3.12
+Version: 0.3.13
 Title: Analyze Bacterial Pangenomes in R with 'Pagoo'
 Description: Provides an encapsulated, object-oriented class system for
   analyzing bacterial pangenomes. For a definition of this concept, see
@@ -34,12 +34,12 @@ Suggests: micropan, patchwork, ape, phangorn, pegas, DECIPHER,
 License: GPL-3
 Encoding: UTF-8
 ByteCompile: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2022-01-31 14:12:28 UTC; iferres
+Packaged: 2022-08-30 17:37:12 UTC; iferres
 Author: Ignacio Ferres [aut, cre] (<https://orcid.org/0000-0003-0910-6568>),
   Gregorio Iraola [aut] (<https://orcid.org/0000-0002-6516-3404>),
   Institut Pasteur de Montevideo [fnd]
 Repository: CRAN
-Date/Publication: 2022-02-01 08:10:02 UTC
+Date/Publication: 2022-08-31 19:50:02 UTC
