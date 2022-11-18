@@ -158,14 +158,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">untar</span>(<span class="at">tarfile =</span> tgz, <span class="at">exdir =</span> <span class="fu">tempdir</span>()) <span class="co"># Decompress example dataset</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="fu">tempdir</span>(), <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">pattern =</span> <span class="st">&#39;tsv$|fasta$&#39;</span>) <span class="co"># List files</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>files</span></code></pre></div>
-<pre><code>## [1] &quot;/tmp/RtmpVE7Q3u/case_clusters_meta.tsv&quot;
-## [2] &quot;/tmp/RtmpVE7Q3u/case_df.tsv&quot;           
-## [3] &quot;/tmp/RtmpVE7Q3u/case_orgs_meta.tsv&quot;    
-## [4] &quot;/tmp/RtmpVE7Q3u/organismA.fasta&quot;       
-## [5] &quot;/tmp/RtmpVE7Q3u/organismB.fasta&quot;       
-## [6] &quot;/tmp/RtmpVE7Q3u/organismC.fasta&quot;       
-## [7] &quot;/tmp/RtmpVE7Q3u/organismD.fasta&quot;       
-## [8] &quot;/tmp/RtmpVE7Q3u/organismE.fasta&quot;</code></pre>
+<pre><code>## [1] &quot;/tmp/RtmpcZlWoo/case_clusters_meta.tsv&quot;
+## [2] &quot;/tmp/RtmpcZlWoo/case_df.tsv&quot;           
+## [3] &quot;/tmp/RtmpcZlWoo/case_orgs_meta.tsv&quot;    
+## [4] &quot;/tmp/RtmpcZlWoo/organismA.fasta&quot;       
+## [5] &quot;/tmp/RtmpcZlWoo/organismB.fasta&quot;       
+## [6] &quot;/tmp/RtmpcZlWoo/organismC.fasta&quot;       
+## [7] &quot;/tmp/RtmpcZlWoo/organismD.fasta&quot;       
+## [8] &quot;/tmp/RtmpcZlWoo/organismE.fasta&quot;</code></pre>
 <p>The file we need now is <code>case_df.tsv</code>. Lets load it and see what’s its structure:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_file <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;case_df.tsv&quot;</span>, files, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(data_file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>, <span class="at">quote =</span> <span class="st">&#39;&#39;</span>)</span>
@@ -294,9 +294,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;pangenome&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>p<span class="sc">$</span><span class="fu">write_pangenome</span>(<span class="at">dir =</span> tmp)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(tmp, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;/tmp/RtmpVE7Q3u/pangenome/clusters.tsv&quot; 
-## [2] &quot;/tmp/RtmpVE7Q3u/pangenome/data.tsv&quot;     
-## [3] &quot;/tmp/RtmpVE7Q3u/pangenome/organisms.tsv&quot;</code></pre>
+<pre><code>## [1] &quot;/tmp/RtmpcZlWoo/pangenome/clusters.tsv&quot; 
+## [2] &quot;/tmp/RtmpcZlWoo/pangenome/data.tsv&quot;     
+## [3] &quot;/tmp/RtmpcZlWoo/pangenome/organisms.tsv&quot;</code></pre>
 <p>This creates a directory with 3 text files. The advantage of this approach is that you can analyze it outside R, the disadvantage is that from a reproducibility point of view reading text could be less stable since class or number precision can be lost, and also you can’t save the state of the object in any given time. Only available organisms/genes/clusters are saved, and if you reload the class using the tsv files, any previously dropped organisms/gene/cluster won’t be available any more. (For information about dropping/recovering organisms, see “Subset” tutorial).</p>
 <p>If you want to save the object and continue working with it in other R session, we recommend to save them as R objects with the RDS methods provided:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rds <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;pangenome.RDS&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
